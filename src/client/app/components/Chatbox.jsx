@@ -1,7 +1,9 @@
-// import React from 'react';
+import React from 'react';
 
-// const Chatbox = (props) => (
+const Chatbox = (props) => (
+  <div>
   
-// );
+  </div>
+);
 
-// export default Chatbox; 
+export default Chatbox; 
