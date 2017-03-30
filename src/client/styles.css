@@ -1,4 +1,23 @@
+.event-show {
+  padding-top: 25px;
+  padding-left: 25px;
+}
 
+.message-input-box {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-left: 25px;
+}
+
+.pushable {
+  margin-left: 195px;
+  padding: 25px;
+}
+
+/*
 .page-header {
   background: url(./media_lib/youInLogo.png) 50% 50% no-repeat;
   border-radius: 8px;
@@ -40,7 +59,7 @@
   /*background-color: rgba(161, 23, 45, 0.7)*/
 }
 
-body {
+/*body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -102,6 +121,7 @@ p, li {
 
 /* this all deals with the facebook login button and the formatting for the div containing the
 button */
+/*
 .loginBtn {
   box-sizing: border-box;
   position: relative;
@@ -218,5 +238,4 @@ button */
   border-radius: 12px;
   background-color: #f47927;
   color: black;
-}
-
+}*/

@@ -29,6 +29,7 @@ export default class MessageInputBox extends React.Component {
 			text: this.state.text,
 			created: new Date().toISOString()
 		}
+
 		// let socket = this.state.socket;
 		// socket.emit('send-message', message);
 		$.ajax({
@@ -52,7 +53,7 @@ export default class MessageInputBox extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="message-input-box">
 				<input type="text" placeholder="Message"
 					value={ this.state.text }
 					onChange={ this.updateText } />
