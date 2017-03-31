@@ -28,6 +28,7 @@ export default class Chat extends React.Component {
     this.handleDeclineEvent = this.handleDeclineEvent.bind(this);
     this.handleAcceptEvent = this.handleAcceptEvent.bind(this);
     this.renderNewMessage = this.renderNewMessage.bind(this);
+    this.renderNewEvent = this.renderNewEvent.bind(this);
   }
 
   componentDidMount() {
@@ -50,10 +51,21 @@ export default class Chat extends React.Component {
     })
     socket.on('new-room', function(data) {
       console.log('Sockets: A new event room was created: ', data);
+      data.users.map(user => {
+        if (user === this.props.currentUser) {
+          this.renderNewEvent(data.event)
+        }
+      })
     })
     this.setState({
       socket: socket
     });
+  }
+
+  renderNewEvent(event) {
+    this.setState({
+      friendEvents: this.state.friendEvents.push(event)
+    })
   }
 
   renderNewMessage(message) {
