@@ -91,6 +91,7 @@ export default class Chat extends React.Component {
             messages={ this.state.messages }
             getEvents={ this.props.getEvents }
             history={ this.props.history }
+            accessToken={ this.props.accessToken }
           />
         </div>
       </div>

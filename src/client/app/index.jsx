@@ -93,9 +93,11 @@ class App extends React.Component {
         }} />
         <Route path='/chat' component={(props) => {
           return (
-            <Chat history={ props.history } 
-                  getEvents={ this.getEvents.bind(this)} 
-                  allState={ this.state }/>
+            <Chat 
+              history={ props.history } 
+              getEvents={ this.getEvents.bind(this)} 
+              allState={ this.state }
+            />
           )
         }} />
       </div>

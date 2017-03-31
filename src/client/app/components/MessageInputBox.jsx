@@ -1,6 +1,5 @@
 import React from 'react';
 import io from 'socket.io-client';
-import $ from 'jquery';
 
 export default class MessageInputBox extends React.Component {
 	constructor(props) {
@@ -16,47 +15,22 @@ export default class MessageInputBox extends React.Component {
 	}
 
 	componentDidMount() {
-		let socket = io('http://localhost:8080/');
-		socket.on('connect', function() {
-		console.log('Socket Id: ', socket.id);
-		})
-		socket.on('new-message', function(data) {
-			console.log('fdsfds', data);
-		})
-		this.setState({
-			socket: socket
-		});
+		// let socket = io();
+		// this.setState({
+		// 	socket: socket
+		// });
 	}
-
-  clearInput() {
-    this.setState({
-      text: ''
-    })
-  }
 
 	sendMessage() {
 		let message = {
-			event_id: this.props.eventId || 2,
-			user_id: this.props.userId || 2,
+			event_id: this.props.eventId,
+			user_id: this.props.userId,
 			text: this.state.text,
-			created: new Date().toISOString()
+			created: new Date()
 		}
-
-		let socket = this.state.socket;
-		socket.emit('send-message', message);
-    this.props.renderNewMessage(message);
-    this.clearInput();
-		// $.ajax({
-		// 	url: '/messages',
-		// 	method: 'POST',
-		// 	data: message,
-		// 	success: function(results) {
-		// 		console.log(results);
-		// 	},
-		// 	error: function(err) {
-		// 		console.log('Error: ', err);
-		// 	}
-		// });
+		console.log(message);
+		// let socket = this.state.socket;
+		// socket.emit('send-message', message);
 	}
 
 	updateText(event) {
@@ -67,11 +41,11 @@ export default class MessageInputBox extends React.Component {
 
 	render() {
 		return (
-			<div className="ui action input">
+			<div className="message-input-box">
 				<input type="text" placeholder="Message"
 					value={ this.state.text }
 					onChange={ this.updateText } />
-				<button className="ui button"
+				<button
 					onClick={ this.sendMessage }>Send</button>
 			</div>
 		)
