@@ -27,8 +27,9 @@ export default class DeleteButton extends React.Component {
       data: {
         eventId: JSON.stringify(this.props.event.event_id)
       },
-      success: function() {
+      success: data => {
         console.log('Success');
+        this.props.deleteEvent(this.props.event.event_id)
       },
       error: function(err) {
         console.log('Error in updateEventStatus in DeleteButton.jsx', err);

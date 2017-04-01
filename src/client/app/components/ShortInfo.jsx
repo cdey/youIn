@@ -26,6 +26,7 @@ export default class ShortInfo extends React.Component {
         <DeleteButton
           event={ this.props.event }
           accessToken={ this.props.accessToken }
+          deleteEvent={ this.props.deleteEvent }
         />
         <h1 className="ui header" style={{marginTop: '0'}}>
           { this.props.event.title }

@@ -28,6 +28,7 @@ const EventShow = (props) => (
       handleAcceptEvent={ props.handleAcceptEvent }
       buttonAccept={ props.buttonAccept }
       buttonDecline={ props.buttonDecline }
+      deleteEvent = { props.deleteEvent }
     />
     <Chatbox
       currentUser={ props.currentUser }

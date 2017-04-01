@@ -30,6 +30,7 @@ export default class Chat extends React.Component {
     this.renderNewMessage = this.renderNewMessage.bind(this);
     this.renderFriendEvent = this.renderFriendEvent.bind(this);
     this.renderOwnerEvent = this.renderOwnerEvent.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
   }
 
   componentDidMount() {
@@ -99,6 +100,21 @@ export default class Chat extends React.Component {
     });
   }
 
+  deleteEvent(eventId) {
+    console.log(data, this.state.ownerEvents);
+    var newOwnerEvents = this.state.ownerEvents;
+    this.state.ownerEvents.forEach(event => {
+      if (eventId === event.event_id) {
+        console.log("hit this line");
+        newOwnerEvents.splice(newOwnerEvents.indexOf(event),1);
+      }
+    })
+    console.log(newOwnerEvents, "NEW OWNER");
+    this.setState({
+      ownerEvents: newOwnerEvents
+    })
+  }
+
   renderOwnerEvent(event) {
     var newEvents = this.state.ownerEvents.push(event);
     this.setState({
@@ -146,7 +162,7 @@ export default class Chat extends React.Component {
       data: {
         eventId: JSON.stringify(this.state.currentEvent.event_id)
       },
-      success: function() {
+      success: data => {
         console.log('Update Event Status Successfully');
       },
       error: function(err) {
@@ -215,6 +231,7 @@ export default class Chat extends React.Component {
             currentEvent={ this.state.currentEvent }
             currentUser={ this.props.currentUser }
             socket={ this.state.socket }
+            deleteEvent={ this.deleteEvent }
           />
         </div>
       </div>
