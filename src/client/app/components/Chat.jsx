@@ -13,8 +13,8 @@ export default class Chat extends React.Component {
     super(props);
 
     this.state = {
-      ownerEvents: this.props.allState.ownerEvents,
-      friendEvents: [],
+      ownerEvents: props.allState.ownerEvents,
+      friendEvents: props.allState.friendEvents,
       currentEvent: props.ownerEvents[0],
       currentAttendees: '',
       messages: [],
@@ -48,8 +48,8 @@ export default class Chat extends React.Component {
     })
     socket.on('new-message', function(data) {
       console.log('Sockets: Received new message: ', data);
-      var array = this.state.ownerEvents;
-      array.forEach(event => {
+      var ownerArray = this.state.ownerEvents;
+      ownerArray.forEach(event => {
         if (data.event_id === event.event_id) {
           if (!event.unread_messages) {
             event.unread_messages = [];
@@ -62,9 +62,10 @@ export default class Chat extends React.Component {
         }
       });
       this.setState({
-        ownerEvents: this.state.ownerEvents
+        ownerEvents: ownerArray
       })
-      this.state.friendEvents.forEach(event => {
+      var friendArray = this.state.friendEvents;
+      friendArray.forEach(event => {
         if (data.event_id === event.event_id) {
           if (!event.unread_messages) {
             event.unread_messages = [];
@@ -76,6 +77,9 @@ export default class Chat extends React.Component {
           }
         }
       });
+      this.setState({
+        friendEvents: friendArray
+      })
     }.bind(this))
     socket.on('new-room', function(data) {
       console.log('Sockets: A new event room was created: ', data);
