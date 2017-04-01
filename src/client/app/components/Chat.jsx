@@ -56,7 +56,7 @@ export default class Chat extends React.Component {
           this.renderNewEvent(data.event)
         }
       })
-    })
+    }.bind(this))
     this.setState({
       socket: socket
     });
