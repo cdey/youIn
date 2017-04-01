@@ -101,15 +101,12 @@ export default class Chat extends React.Component {
   }
 
   deleteEvent(eventId) {
-    console.log(data, this.state.ownerEvents);
     var newOwnerEvents = this.state.ownerEvents;
     this.state.ownerEvents.forEach(event => {
       if (eventId === event.event_id) {
-        console.log("hit this line");
         newOwnerEvents.splice(newOwnerEvents.indexOf(event),1);
       }
     })
-    console.log(newOwnerEvents, "NEW OWNER");
     this.setState({
       ownerEvents: newOwnerEvents
     })
