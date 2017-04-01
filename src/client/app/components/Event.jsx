@@ -8,7 +8,7 @@ const Event = (props) => (
     { 
       props.event.unread_messages && 
       props.event.unread_messages.length > 0 &&
-      props.currentEvent.event_id !== props.event.event_id
+      props.currentEvent.event_id !== props.event.event_id ? props.event.unread_messages.length : ''
     }
 
   </a>
