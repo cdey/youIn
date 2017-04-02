@@ -1,7 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
 import FriendsListItem from './FriendsListItem.jsx';
-import InviteNewFriend from './components/InviteNewFriend.jsx';
 import Modal from 'boron/DropModal';
 import $ from 'jquery';
 
@@ -16,21 +15,13 @@ class CreateEventButton extends React.Component {
       date: '',
       time: '12:00:00',
       invitees: {},
-      invitNew: false,
       description: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inviteFriend = this.inviteFriend.bind(this);
     this.addToUsers_Events = this.addToUsers_Events.bind(this);
-    this.handleInviteNewEvent = this.handleInviteNewEvent.bind(this);
 
-  }
-
-  handleInviteNewEvent() {
-    this.setState({
-      invitNew: !this.state.invitNew
-    })
   }
 
   componentDidMount() {
@@ -142,6 +133,7 @@ class CreateEventButton extends React.Component {
       success: function(data) {
         console.log('data from ajax in CreateEventButton', data.event_id);
         context.addToUsers_Events(data.event_id);
+        context.setState({title: '', where: '', date: '', description: ''})
       },
       error: function(err) {
         console.log('ajax', context);
@@ -157,8 +149,8 @@ class CreateEventButton extends React.Component {
           <button id="create_event" className="ui right floated primary button"
             onClick={this.showModal.bind(this)} >Create Event</button>
         </div>
-
-        <Modal ref="modal"
+        
+        <Modal ref="modal" 
           modalStyle={{width: '80%'}}>
           <div className="container-fluid">
             <form className="ui form"
@@ -173,8 +165,8 @@ class CreateEventButton extends React.Component {
                   <div className="inline fields">
                     <div className="sixteen wide field">
                       <label>Event Name</label>
-                      <input
-                        value={this.state.title}
+                      <input 
+                        value={this.state.title} 
                         type="text"
                         onChange={this.handleChange.bind(this, 'title')} required
                         />
@@ -215,21 +207,9 @@ class CreateEventButton extends React.Component {
                 type="text" required/>
               </div>
 
-              <div
-                onClick={ this.handleInviteNewEvent }
-              >
-                <h4 className='create'>Click Here to Invite New Friend...</h4>
-              </div>
-
-              {
-                this.state.invitNew &&
-                <InviteNewFriend addNewTolist={ this.props.addNewTolist }/>
-              }
-
               <div className="col-md-4">
-                <h4 className='create'>Invite from Friends List</h4>
+                <h4 className='create'>Invite Friends</h4>
                 {
-                  this.props.friends &&
                   this.props.friends.map( (friend, i) => (
                     <FriendsListItem
                       key={i}
