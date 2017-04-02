@@ -31,6 +31,7 @@ const EventShow = (props) => (
       deleteEvent = { props.deleteEvent }
     />
     <Chatbox
+      userName={ props.userName }
       currentUser={ props.currentUser }
       messages={ props.messages }
       renderNewMessage={ props.renderNewMessage }

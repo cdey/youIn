@@ -60,7 +60,7 @@ module.exports = {
 						    .catch((err) => {
 						      console.error(err, 'an error in db retrieval write');
 						      socket.emit('errors', 'bad request with write');
-						    });				    	
+						    });
 				    })
 				    .catch((err) => {
 				      console.error(err, 'an error in db retrieval username');

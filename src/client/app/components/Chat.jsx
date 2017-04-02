@@ -50,7 +50,7 @@ export default class Chat extends React.Component {
     })
     socket.on('new-message', function(data) {
       console.log('Sockets: Received new message: ', data);
-      
+
       if (data.user_id !== (this.props.currentUser.toString())) {
       var messageArray = this.state.messages;
         messageArray.push(data);
@@ -64,7 +64,7 @@ export default class Chat extends React.Component {
         if (data.event_id === event.event_id) {
           if (!event.unread_messages) {
             event.unread_messages = [];
-          } 
+          }
           event.unread_messages.push(data);
         } else {
           if (!event.unread_messages) {
@@ -80,7 +80,7 @@ export default class Chat extends React.Component {
         if (data.event_id === event.event_id) {
           if (!event.unread_messages) {
             event.unread_messages = [];
-          } 
+          }
           event.unread_messages.push(data);
         } else {
           if (!event.unread_messages) {
@@ -97,14 +97,14 @@ export default class Chat extends React.Component {
       data.users.map(user => {
         if (user === this.props.currentUser) {
           this.renderFriendEvent(data.event)
-        }    
+        }
       })
 
       if (data.event.owner === this.props.currentUser) {
         this.renderOwnerEvent(data.event)
-      }  
+      }
     }.bind(this))
-    
+
     socket.on('errors', function(data) {
       console.log('Sockets: An error occured: ', data);
     })

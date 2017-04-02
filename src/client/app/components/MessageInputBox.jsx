@@ -24,9 +24,11 @@ export default class MessageInputBox extends React.Component {
 		let message = {
 			event_id: this.props.currentEvent.event_id,
 			user_id: this.props.currentUser,
+      user_name: this.props.userName,
 			text: this.state.text,
 			created: new Date().toISOString()
 		}
+    console.log(message);
 
 		this.props.socket.emit('send-message', message);
     this.props.renderNewMessage(message);
