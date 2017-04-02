@@ -142,6 +142,7 @@ class CreateEventButton extends React.Component {
       success: function(data) {
         console.log('data from ajax in CreateEventButton', data.event_id);
         context.addToUsers_Events(data.event_id);
+        context.setState({title: '', where: '', date: '', description: ''})
       },
       error: function(err) {
         console.log('ajax', context);
